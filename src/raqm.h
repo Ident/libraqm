@@ -74,7 +74,7 @@ typedef enum
  * @RAQM_ALIGNMENT_CENTER: Paragraph is center aligned..
  * @RAQM_ALIGNMENT_FULL: Paragraph is full justified.
  *
- * Base paragraph alignment, see raqm_set_paragraph_alignment().
+ * Base paragraph alignment, see raqm_set_par_alignment().
  *
  * Since: 0.2
  */
@@ -137,6 +137,10 @@ raqm_set_par_direction (raqm_t          *rq,
                         raqm_direction_t dir);
 
 bool
+raqm_set_par_alignment (raqm_t           *rq,
+                        raqm_alignment_t align);
+
+bool
 raqm_add_font_feature  (raqm_t     *rq,
                         const char *feature,
                         int         len);
@@ -154,10 +158,6 @@ raqm_set_freetype_face_range (raqm_t *rq,
 bool
 raqm_set_line_width (raqm_t *rq,
                      int    width);
-
-bool
-raqm_set_paragraph_alignment (raqm_t           *rq,
-                              raqm_alignment_t align);
 
 bool
 raqm_layout (raqm_t *rq);
