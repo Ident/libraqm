@@ -93,6 +93,8 @@ typedef enum
  * @y_advance: the glyph advance width in vertical text.
  * @x_offset: the horizontal movement of the glyph from the current point.
  * @y_offset: the vertical movement of the glyph from the current point.
+ * @x_position: the absolute x position of the glyph.
+ * @y_position: the absolute y position of the glyph.
  * @cluster: the index of original character in input text.
  * @ftface: the @FT_Face of the glyph.
  *
@@ -101,8 +103,6 @@ typedef enum
  */
 typedef struct raqm_glyph_t {
     unsigned int index;
-    int visual_index;
-    int line;
     int x_advance;
     int y_advance;
     int x_offset;
@@ -111,6 +111,9 @@ typedef struct raqm_glyph_t {
     int y_position;
     uint32_t cluster;
     FT_Face ftface;
+    /*< private >*/
+    int visual_index;
+    int line;
 } raqm_glyph_t;
 
 raqm_t *
@@ -138,7 +141,7 @@ raqm_set_par_direction (raqm_t          *rq,
 
 bool
 raqm_set_par_alignment (raqm_t           *rq,
-                        raqm_alignment_t align);
+                        raqm_alignment_t alignment);
 
 bool
 raqm_add_font_feature  (raqm_t     *rq,
