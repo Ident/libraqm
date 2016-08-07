@@ -9,6 +9,8 @@ install:
   - ps: . .\Execute-With-Retry
   - ps: Execute-With-Retry { bash -c "pacman -Syu --noconfirm" }
   - ps: Execute-With-Retry { bash -c "pacman -S --noconfirm autoconf automake libtool gtk-doc mingw-w64-x86_64-pkg-config mingw-w64-x86_64-harfbuzz mingw-w64-x86_64-fribidi mingw-w64-x86_64-freetype" }
+  - git submodule update --init --recursive
+
 
 build_script:
   - set CC=cccl
@@ -18,7 +20,7 @@ build_script:
   - bash -c "mv cccl /usr/bin"
   - bash -c "exec 0</dev/null; ./autogen.sh"
   - bash -c "exec 0</dev/null; ./configure"
-  - bash -c "exec 0</dev/null; make CFLAGS='/W4 /WX /wd4068'"
+  - bash -c "exec 0</dev/null; make CFLAGS='/W4 /WX /wd4068 /wd4244'"
 
 #test_script:
 #  - bash -c "make check"
